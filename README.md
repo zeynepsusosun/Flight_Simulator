@@ -9,12 +9,15 @@ A browser-based 3D flight simulator built with Three.js featuring procedural ter
 ## About
 
 ### What does this project do?
+
 This is a fully interactive 3D flight simulator that runs entirely in the browser. It features a physics-based flight model with lift, drag, thrust, and gravity calculations, procedurally generated infinite terrain with altitude-based coloring (water, grassland, forests, rocky mountains, snow caps), a dynamic sky system with day/night cycles and weather changes, and a complete HUD inspired by real aircraft cockpit instruments.
 
 ### Why was it built?
+
 Flight simulation combines multiple complex software engineering disciplines — real-time 3D rendering, physics simulation, procedural content generation, user input handling, and HUD/UI design — into a single interactive application. This project demonstrates the ability to architect and implement a modular, performance-critical application with zero external dependencies beyond Three.js, making it an ideal portfolio piece for aerospace-related software engineering roles.
 
 ### Technologies Used
+
 - **Three.js** (v0.170.0) — 3D rendering engine (loaded via CDN, zero install)
 - **WebGL** — Hardware-accelerated graphics via browser
 - **Web Audio API** — Procedural sound effects (stall warnings, crash sounds, engine failure)
@@ -41,10 +44,10 @@ python -m http.server 8082
 
 ## Prerequisites
 
-| Requirement | Version | Check Command | Install |
-|---|---|---|---|
-| **Web Browser** | Chrome, Firefox, Edge (with WebGL) | — | — |
-| **Python 3** | 3.7+ | `python --version` | [python.org/downloads](https://www.python.org/downloads/) |
+| Requirement     | Version                            | Check Command      | Install                                                   |
+| --------------- | ---------------------------------- | ------------------ | --------------------------------------------------------- |
+| **Web Browser** | Chrome, Firefox, Edge (with WebGL) | —                  | —                                                         |
+| **Python 3**    | 3.7+                               | `python --version` | [python.org/downloads](https://www.python.org/downloads/) |
 
 > **Alternative servers:** `npx serve .` (Node.js), VS Code Live Server extension, or any static HTTP server.
 
@@ -68,6 +71,7 @@ python -m http.server 8082
 ```
 
 You should see:
+
 ```
 Serving HTTP on :: port 8082 (http://[::]:8082/) ...
 ```
@@ -92,25 +96,26 @@ Follow the compass indicator (bottom-right) to find the runway. Reduce speed, lo
 
 ## Controls
 
-| Key | Action |
-|---|---|
-| `W` / `S` | Pitch Down / Pitch Up |
-| `A` / `D` | Roll Left / Roll Right |
-| `Q` / `E` | Yaw Left / Yaw Right |
-| `Shift` / `Ctrl` | Throttle Up / Throttle Down |
-| `1` / `2` / `3` | Chase Cam / Cockpit Cam / Free Cam |
-| `G` | Toggle Landing Gear |
-| `R` | Reset Position |
-| `H` | Toggle HUD |
-| `P` / `Esc` | Pause |
-| `F` | Fullscreen |
-| `?` | Toggle Controls Help |
+| Key              | Action                             |
+| ---------------- | ---------------------------------- |
+| `W` / `S`        | Pitch Down / Pitch Up              |
+| `A` / `D`        | Roll Left / Roll Right             |
+| `Q` / `E`        | Yaw Left / Yaw Right               |
+| `Shift` / `Ctrl` | Throttle Up / Throttle Down        |
+| `1` / `2` / `3`  | Chase Cam / Cockpit Cam / Free Cam |
+| `G`              | Toggle Landing Gear                |
+| `R`              | Reset Position                     |
+| `H`              | Toggle HUD                         |
+| `P` / `Esc`      | Pause                              |
+| `F`              | Fullscreen                         |
+| `?`              | Toggle Controls Help               |
 
 ---
 
 ## Features
 
 ### Flight Physics
+
 - Lift, drag, thrust, and gravity forces calculated per frame
 - Angle of Attack (AoA) based lift coefficient with stall modeling
 - Stall buffeting effect with random acceleration perturbation
@@ -120,6 +125,7 @@ Follow the compass indicator (bottom-right) to find the runway. Reduce speed, lo
 - Ground collision detection with crash/gentle landing logic
 
 ### Procedural Terrain
+
 - Infinite terrain generated using Simplex noise with 6 octaves of fractal Brownian motion (fBm)
 - Chunk-based loading/unloading system (512m chunks, 64-segment resolution)
 - Altitude-based vertex coloring: water → grassland → forest → brown hills → rocky → snow
@@ -127,6 +133,7 @@ Follow the compass indicator (bottom-right) to find the runway. Reduce speed, lo
 - Water plane with transparency
 
 ### Sky & Weather System
+
 - Dynamic day/night cycle (5-minute full cycle)
 - 4 weather types: Clear, Cloudy, Foggy, Stormy
 - 4 seasons affecting weather probability distribution
@@ -137,6 +144,7 @@ Follow the compass indicator (bottom-right) to find the runway. Reduce speed, lo
 - Directional light with shadow mapping follows sun position
 
 ### HUD (Heads-Up Display)
+
 - Speed tape (knots) with stall speed warning
 - Altitude tape (feet) with low altitude warning
 - Heading indicator with cardinal directions
@@ -148,12 +156,14 @@ Follow the compass indicator (bottom-right) to find the runway. Reduce speed, lo
 - Stall, ground proximity, altitude, and engine failure warnings
 
 ### Camera System
+
 - **Chase Camera** — Smooth follow behind aircraft with lerp damping
 - **Cockpit Camera** — First-person view with wider FOV
 - **Free Camera** — Orbit controls for cinematic views
 - Smooth transitions between camera modes
 
 ### Audio System
+
 - Procedural sound effects using Web Audio API oscillators
 - Stall warning beeps, ground proximity alert, altitude warning
 - Crash and engine failure sounds
@@ -161,6 +171,7 @@ Follow the compass indicator (bottom-right) to find the runway. Reduce speed, lo
 - No external audio files required
 
 ### Runway & Landing
+
 - Runway with center line markings, threshold markings, and edge lights
 - Green/red edge lights indicating runway sections
 - PAPI approach slope indicator lights
@@ -192,6 +203,7 @@ flight-simulator/
 ```
 
 ### Module Dependency Graph
+
 ```
 main.js
   ├── terrain.js    (Simplex noise + chunk system)
@@ -209,28 +221,28 @@ main.js
 ## Screenshots
 
 ![Chase Camera](screenshots/chase-cam.png)
-*Chase camera view with HUD overlay showing speed, altitude, heading, and artificial horizon*
+_Chase camera view with HUD overlay showing speed, altitude, heading, and artificial horizon_
 
 ![Cockpit View](screenshots/cockpit.png)
-*First-person cockpit camera with full instrument display*
+_First-person cockpit camera with full instrument display_
 
 ![Landing](screenshots/landing.png)
-*Approaching the runway with compass navigation and edge lights visible*
+_Approaching the runway with compass navigation and edge lights visible_
 
 ![Stormy Weather](screenshots/weather.png)
-*Dynamic weather system showing stormy conditions with rain particles*
+_Dynamic weather system showing stormy conditions with rain particles_
 
 ---
 
 ## Troubleshooting
 
-| Problem | Solution |
-|---|---|
-| Blank screen / module error | Must use HTTP server, not `file://`. Run `python -m http.server 8082` |
-| Low FPS / lag | Reduce browser window size, close other tabs, ensure hardware acceleration is enabled |
-| No sound | Click anywhere on the page first (browsers require user interaction for audio) |
-| Controls not responding | Click on the simulator window to focus it, then close help panel with `?` |
-| `python` not found | Try `python3` or `py`, or install from [python.org](https://www.python.org/downloads/) |
+| Problem                     | Solution                                                                               |
+| --------------------------- | -------------------------------------------------------------------------------------- |
+| Blank screen / module error | Must use HTTP server, not `file://`. Run `python -m http.server 8082`                  |
+| Low FPS / lag               | Reduce browser window size, close other tabs, ensure hardware acceleration is enabled  |
+| No sound                    | Click anywhere on the page first (browsers require user interaction for audio)         |
+| Controls not responding     | Click on the simulator window to focus it, then close help panel with `?`              |
+| `python` not found          | Try `python3` or `py`, or install from [python.org](https://www.python.org/downloads/) |
 
 ---
 
@@ -247,12 +259,17 @@ main.js
 
 ---
 
-## Author
+## Contributors
 
 **Zeynep Su Sosun** — Software Engineering Student, Near East University
 
 - GitHub: [github.com/zeynepsusosun](https://github.com/zeynepsusosun)
 - LinkedIn: [linkedin.com/in/zeynep-su-sosun-65ab28296](https://www.linkedin.com/in/zeynep-su-sosun-65ab28296)
+
+**Enes Erul** - Software Engineering Student, Near East University
+
+- GitHub: [github.com/0Ens] (https://github.com/0Ens)
+- LinkedIn: [https://www.linkedin.com/in/enes-erul-082b4028a/] (https://www.linkedin.com/in/enes-erul-082b4028a/)
 
 ---
 
