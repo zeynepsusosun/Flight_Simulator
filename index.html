@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Simulator</title>
+    <meta name="description" content="A 3D flight simulator built with Three.js — procedural terrain, realistic physics, and a full HUD.">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+<body>
+    <canvas id="renderer"></canvas>
+
+    <div id="hud">
+        <div id="speed-tape">
+            <div class="tape-label">SPEED</div>
+            <div class="tape-value" id="speed-value">0</div>
+            <div class="tape-unit">KTS</div>
+        </div>
+
+        <div id="altitude-tape">
+            <div class="tape-label">ALT</div>
+            <div class="tape-value" id="alt-value">0</div>
+            <div class="tape-unit">FT</div>
+        </div>
+
+        <div id="heading-indicator">
+            <div id="heading-tape"></div>
+            <div id="heading-value">0°</div>
+        </div>
+
+        <div id="artificial-horizon">
+            <div id="ah-sky-ground">
+                <div id="ah-pitch-ladder"></div>
+            </div>
+            <div id="ah-wings"></div>
+            <div id="ah-center-dot"></div>
+        </div>
+
+        <!-- Waypoint compass (GTA-style) -->
+        <div id="waypoint-compass">
+            <div id="compass-arrow"></div>
+            <div id="compass-label">RWY</div>
+            <div id="compass-distance">0 m</div>
+        </div>
+
+        <div id="throttle-gauge">
+            <div class="tape-label">THR</div>
+            <div id="throttle-bar-bg">
+                <div id="throttle-bar-fill"></div>
+            </div>
+            <div id="throttle-pct">0%</div>
+        </div>
+
+        <div id="flight-data">
+            <div id="vspeed">VS: 0 ft/m</div>
+            <div id="gforce">G: 1.0</div>
+            <div id="mach">M: 0.00</div>
+            <div id="fps-counter">FPS: 60</div>
+        </div>
+
+        <!-- Time & weather display -->
+        <div id="env-info">
+            <div id="time-display">☀️ 07:12</div>
+            <div id="weather-display">☀️ CLEAR | SUMMER</div>
+        </div>
+
+        <div id="camera-label">CHASE CAM</div>
+
+        <div id="stall-warning">STALL</div>
+        <div id="ground-warning">PULL UP</div>
+        <div id="altitude-warning">⚠ ALTITUDE</div>
+        <div id="engine-warning">ENGINE FAILURE</div>
+
+        <div id="controls-help">
+            <h3>CONTROLS</h3>
+            <div class="help-row"><span>W / S</span><span>Pitch Down / Up</span></div>
+            <div class="help-row"><span>A / D</span><span>Roll Left / Right</span></div>
+            <div class="help-row"><span>Q / E</span><span>Yaw Left / Right</span></div>
+            <div class="help-row"><span>Shift / Ctrl</span><span>Throttle Up / Down</span></div>
+            <div class="help-row"><span>1 / 2 / 3</span><span>Chase / Cockpit / Free Cam</span></div>
+            <div class="help-row"><span>G</span><span>Toggle Gear</span></div>
+            <div class="help-row"><span>R</span><span>Reset Position</span></div>
+            <div class="help-row"><span>H</span><span>Toggle HUD</span></div>
+            <div class="help-row"><span>P</span><span>Pause</span></div>
+            <div class="help-row"><span>F</span><span>Fullscreen</span></div>
+            <div class="help-row"><span>?</span><span>Toggle This Help</span></div>
+            <p class="help-hint">🎯 Land on the runway! Follow the compass.</p>
+            <p class="help-hint">Press <strong>?</strong> to close</p>
+        </div>
+    </div>
+
+    <!-- Game Over screen -->
+    <div id="game-over-screen">
+        <div id="game-over-content">
+            <h1 id="game-over-title">CRASH</h1>
+            <p id="game-over-msg">Your aircraft has been destroyed.</p>
+            <button id="restart-btn">RESTART (R)</button>
+        </div>
+    </div>
+
+    <!-- Landing success screen -->
+    <div id="landing-success-screen">
+        <div id="landing-content">
+            <h1>✈ LANDING SUCCESSFUL</h1>
+            <p>You landed safely on the runway!</p>
+            <p class="landing-sub">Great piloting skills.</p>
+            <button id="restart-btn-2">FLY AGAIN (R)</button>
+        </div>
+    </div>
+
+    <div id="loading-screen">
+        <div id="loading-content">
+            <h1>FLIGHT SIMULATOR</h1>
+            <div id="loading-bar-bg"><div id="loading-bar-fill"></div></div>
+            <p id="loading-text">Initializing...</p>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
